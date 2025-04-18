@@ -115,5 +115,19 @@ console.log(cool);
         return inner;
     }
     ```
-    
-    
+- inner scope is the second function
+- outside scope is the whole piece of code
+## Private variables
+- can use closures to create private variables
+- we can use this to run multiple game functions at once
+- usually define a variable with underscore to mean its private
+
+# https://dev.to/tomekbuszewski/module-pattern-in-javascript-56jm
+## Module Patterns
+- modules are created as an IIFE with a function inside
+```
+const SomeModule = (function() {})();
+```
+- the parenthesis around the function just makes javascript evaluate it first so then it can run with the empty parenthesis after
+- Everything within the body of said function is bound to that module and can be seen by each other.
+- This shows that everything publicly exposed can be changed from the outside. This is one of the biggest module pattern drawbacks.
