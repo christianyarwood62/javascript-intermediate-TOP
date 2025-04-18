@@ -35,6 +35,7 @@ const { a, b } = obj;
 # Private Variables and functions
 - private variables are ones that we cant access directly in the object instance, only accessed via the closures we defined
 - private variables use closures to create smaller dedicated variables and functions within the factory function itself - things we dont need to return in the object itself
+- denote private variables with underscore before variable name
 
 # The Module pattern: IIFEs
 - dont need a factory to produce multiple objects, use factories to wrap sections of code together instead

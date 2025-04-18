@@ -1,0 +1,88 @@
+# Classes
+- Javascript doesnt have classes like Java or Ruby.
+- ES6 introduces the ***class*** keyword. But it is new syntax for the exact same as object constructors and prototypes
+
+# Property getters and setters
+- There are 2 kinds of object properties:
+    1) data properties
+        - these are previous things I learned
+    2) accessor properties
+        - these are getter and setters
+
+## Getters and setters
+- e.g.
+```
+let user = {
+  name: "John",
+  surname: "Smith",
+
+  get fullName() {
+    return `${this.name} ${this.surname}`;
+  },
+
+  set fullName(value) {
+    [this.name, this.surname] = value.split(" ");
+  }
+};
+
+// set fullName is executed with the given value.
+user.fullName = "Alice Cooper";
+
+alert(user.name); // Alice
+alert(user.surname); // Cooper
+```
+
+## Accessor Descriptors
+- descriptors for accessor properties are different from those for data properties
+- an accessor descriptor may have:
+    - get - a function without arguments
+    - set - a function with 1 argument
+    - enumerable - same as data properties
+    - configurable - same as data properties
+- cant supply value and get in the same descriptor
+
+
+## Smarter getters/setters
+- can use private variables to gain more control over operations
+```
+let user = {
+  get name() {
+    return this._name;
+  },
+
+  set name(value) {
+    if (value.length < 4) {
+      alert("Name is too short, need at least 4 characters");
+      return;
+    }
+    this._name = value;
+  }
+};
+
+user.name = "Pete";
+alert(user.name); // Pete
+
+user.name = ""; // Name is too short...
+```
+
+## Using for compatibility
+- can take control over "regular" data properties at any moment by replacing it with a getter and a setter and tweak its behavior.
+```
+function User(name, birthday) {
+  this.name = name;
+  this.birthday = birthday;
+
+  // age is calculated from the current date and birthday
+  Object.defineProperty(this, "age", {
+    get() {
+      let todayYear = new Date().getFullYear();
+      return todayYear - this.birthday.getFullYear();
+    }
+  });
+}
+
+let john = new User("John", new Date(1992, 6, 1));
+
+alert( john.birthday ); // birthday is available
+alert( john.age );      // ...as well as the age
+```
