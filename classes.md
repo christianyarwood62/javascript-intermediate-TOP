@@ -176,3 +176,11 @@ class MyClass {
   // ...
 }
 ```
+
+# extends
+- extends keyword is used in class declarations to create a class that is a child of another class
+- syntax:
+```
+class ChildClass extends ParentClass { /* … */ }
+```
+- prototype of a ParentClass must be an Object or null
