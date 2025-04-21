@@ -86,3 +86,93 @@ let john = new User("John", new Date(1992, 6, 1));
 alert( john.birthday ); // birthday is available
 alert( john.age );      // ...as well as the age
 ```
+
+# Class Syntax
+- wiki: classes are code templates for creating objects, providing initial values for states (member valuables), and implementations of behaviour (member functions/methods)
+- syntax is:
+```
+class MyClass {
+  // class methods
+  constructor() { ... }
+  method1() { ... }
+  method2() { ... }
+  method3() { ... }
+  ...
+}
+``` 
+- you can use new Myclass() to create an objects with all listed methods. 
+- contructor() is called automatically by using keyword 'new', so initialise the object there
+- **Dont use commas here**
+- a class is a kind of function
+- a class can be a |syntactic sugar", basically syntax to make it easier to read, but doesnt introduce anything new, i.e. we could declare the same thing without using the class keyword
+    - but there are differences:
+    1) a function created by class is labelled a special internal property, [[IsClassContructor]]: true
+    2) class methods are non-enumerable. A class definition sets enumerable to false for all methods of prototype
+    3) classes always use strict, so all code inside class construct is strict mode
+
+# Class Expression
+- just like functions, classes can be defined inside other expressions, e.g.:
+```
+ let User = class {
+  sayHi() {
+    alert("Hello");
+  }
+};
+```
+
+# Class Fields
+- class fields is a syntax that allows to add any properties
+- e.g.
+```
+class User {
+  name = "John";
+
+  sayHi() {
+    alert(`Hello, ${this.name}!`);
+  }
+}
+
+new User().sayHi(); // Hello, John!
+```
+    - **Important - these are set on individual objects, not the User.prototype
+
+# Making bound methods with class fields
+- cant reference 'this' without it showing undefined when you call an object method
+```
+class Button {
+  constructor(value) {
+    this.value = value;
+  }
+
+  click() {
+    alert(this.value);
+  }
+}
+
+let button = new Button("hello");
+
+setTimeout(button.click, 1000); // undefined
+```
+- have to do:
+    1) pass a wrapper function, such as setTimeout(() => button.click(), 1000).
+    2) bind the method to obhject, e.g. in the constructor
+
+# Summary
+- basic syntax is:
+```
+class MyClass {
+  prop = value; // property
+
+  constructor(...) { // constructor
+    // ...
+  }
+
+  method(...) {} // method
+
+  get something(...) {} // getter method
+  set something(...) {} // setter method
+
+  [Symbol.iterator]() {} // method with computed name (symbol here)
+  // ...
+}
+```
