@@ -1,3 +1,5 @@
+***Add a git ignore template from github or do step 3***
+
 1) run in the directory:
 ```
 npm install --save-dev webpack webpack-cli
@@ -9,9 +11,16 @@ mkdir src
 touch src/index.js
 touch src/template.html
 touch src/styles.css
+touch .gitignore
 ```
 
-3) add import of styles to index.js, by adding the following:
+3) add to the git ignore:
+```
+node_modules
+dist
+```
+
+4) add import of styles to index.js, by adding the following:
 ***- add each image you want from an images folder to the index js file***
 ```
 import "./styles.css";
@@ -19,8 +28,7 @@ import "./styles.css";
 import exampleImage from "./imgs/exampleImage.jpg"
 ```
 
-
-4) in the project root, create webpack.common.js file with following code:
+5) in the project root, create webpack.common.js file with following code:
 ```
 // webpack.config.js
 const path = require("path");
@@ -60,7 +68,8 @@ module.exports = {
   },
 };
 ```
-5) make webpack.prod.js (production) and webpack.dev.js (development) files:
+
+6) make webpack.prod.js (production) and webpack.dev.js (development) files:
 webpack.dev.js:
 ```
 const { merge } = require('webpack-merge');
@@ -84,25 +93,27 @@ module.exports = merge(common, {
 });
 ```
 
-5) Handle html:
+7) Handle html:
 ```
 npm install --save-dev html-webpack-plugin
 ```
-6) Load CSS
+
+8) Load CSS
 ```
 npm install --save-dev style-loader css-loader
 ```
-7) load images:
+
+9) load images:
 ```
 npm install --save-dev html-loader
 ```
 
-8) Install webpack server:
+10) Install webpack server:
 ```
 npm install --save-dev webpack-dev-server
 ```
 
-10) in the package.json file, add scripts property to execute different builds so the file looks like this:
+11) in the package.json file, add scripts property to execute different builds so the file looks like this:
 ```
 {
   "devDependencies": {
@@ -120,13 +131,14 @@ npm install --save-dev webpack-dev-server
   }
 }
 ```
-9) run either:
+
+12) run either:
 - npm run build. Same as "npm webpack" which updates the page once
 - npm run dev. Same as "npm webpack serve" which makes the page update everytime you save
 - npm run deploy. Same as "git subtree push --prefix dist origin gh-pages" which pushes the dist files to github pages on github to view
 Site available at: http://localhost:8080/
 
-11) deploy to github pages:
+13) deploy to github pages:
 - make a branch for github pages: ***(only need to do this the first time you deploy)***
 ```
 git branch gh-pages
