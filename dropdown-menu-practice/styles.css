@@ -1,0 +1,35 @@
+#dropdown-btn {
+    overflow: hidden;
+    height: 30px;
+    width: 50px;
+    box-sizing: border-box;
+    transition: 1s;
+}
+
+.dropdown-dots-container {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.dropdown-content-container {
+    padding-left: 0px;
+}
+
+li {
+    list-style-type: none;
+}
+
+#dropdown-dot {
+    background-color: black;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+}
+
+#dropdown-content:hover {
+    text-decoration: underline;
+    opacity: 50%;
+}
