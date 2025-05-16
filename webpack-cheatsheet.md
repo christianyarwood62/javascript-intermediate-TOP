@@ -5,6 +5,11 @@
 npm install --save-dev webpack webpack-cli
 ```
 
+1.5) install babel in the directory
+```
+npm install -D babel-loader @babel/core @babel/preset-env webpack
+```
+
 2) make a src directory, html page, css file, and index js file:
 ```
 mkdir src
@@ -67,6 +72,24 @@ module.exports = {
     ],
   },
 };
+```
+
+5.5) Add this to the module above ^
+```
+    {
+      test: /\.(?:js|mjs|cjs)$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          targets: "defaults",
+          presets: [
+            ['@babel/preset-env']
+          ],
+          plugins: ['@babel/plugin-proposal-decorators', { version: "2023-11" }]
+        }
+      }
+    }
 ```
 
 6) make webpack.prod.js (production) and webpack.dev.js (development) files:
