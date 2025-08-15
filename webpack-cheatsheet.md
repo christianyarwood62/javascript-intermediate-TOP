@@ -156,8 +156,8 @@ npm install --save-dev webpack-dev-server
 ```
 
 12) run either:
-- npm run build. Same as "npm webpack" which updates the page once
-- npm run dev. Same as "npm webpack serve" which makes the page update everytime you save
+- npm run build. Same as "npx webpack" which updates the page once
+- npm run dev. Same as "npx webpack serve" which makes the page update everytime you save
 - npm run deploy. Same as "git subtree push --prefix dist origin gh-pages" which pushes the dist files to github pages on github to view
 Site available at: http://localhost:8080/
 
